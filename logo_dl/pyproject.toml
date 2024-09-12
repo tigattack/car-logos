@@ -1,11 +1,13 @@
 [tool.poetry]
-name = "logo-dl"
+name = "logo-downloader"
 version = "0.1.0"
 description = ""
 authors = ["tigattack <10629864+tigattack@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
-package-mode = false
+packages = [
+    {include = "downloader"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"

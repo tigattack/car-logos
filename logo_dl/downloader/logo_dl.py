@@ -125,8 +125,6 @@ class VehicleManufacturerLogos:
         else:
             log.info(f"Downloaded {downloaded_logos_count} logos to {self.logos_dir}.")
 
-        # TODO: if local files exist that aren't in the logo data file, remove them? or attempt to backfill logo data based on retrieved metadata?
-
         # Merge and save the logo data
         await write_logo_data(self.logo_data_file, downloaded_logos, existing_logo_data)
 

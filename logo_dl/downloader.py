@@ -8,7 +8,7 @@ from downloader import VehicleManufacturerLogos
 @click.option("--debug", is_flag=True, type=bool, help="Enable debug logging.")
 def main(target_dir, debug) -> None:
     """Download logos for all manufacturers."""
-    log = logging.getLogger("logo_dl")
+    log = logging.getLogger()
     log.setLevel(logging.DEBUG if debug else logging.INFO)
     logos = VehicleManufacturerLogos(target_dir)
     asyncio.run(logos.download_logos())

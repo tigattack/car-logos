@@ -16,7 +16,7 @@ from pydantic_core import to_jsonable_python
 
 from .models import ManufacturerLogo
 
-log = logging.getLogger("logo_dl")
+log = logging.getLogger()
 
 
 def check_for_duplicate_list_items(items: list, key: str) -> Optional[set]:

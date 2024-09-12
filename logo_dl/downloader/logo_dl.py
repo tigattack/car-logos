@@ -23,7 +23,7 @@ from .utils import (
 
 BASE_URL = "https://www.carlogos.org"
 
-log = logging.getLogger("logo_dl")
+log = logging.getLogger()
 formatter = logging.Formatter("[%(asctime)s - %(name)s - %(levelname)s] %(message)s")
 handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(formatter)

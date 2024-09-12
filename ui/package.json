@@ -8,12 +8,15 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "ts-jest "
+    "test": "ts-jest ",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
+    "fuse.js": "^7.0.0",
     "parse-url": "^9.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
     "ts-jest": "^29.2.5"
   },
   "devDependencies": {
@@ -27,6 +30,8 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "nock": "^14.0.0-beta.13",
+    "prettier": "^3.3.3",
+    "sass-embedded": "^1.78.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"

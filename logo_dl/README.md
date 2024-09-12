@@ -41,8 +41,18 @@ Options:
   --help             Show this message and exit.
 ```
 
-## TODO
+### Example
 
+```
+❯ python3 downloader.py --target_dir ../ui/logos
+[2024-09-12 18:57:56,201 - root - INFO] Discovering manufacturers...
+[2024-09-12 18:57:56,884 - root - INFO] Creating target directory '../ui/logos'...
+[2024-09-12 18:57:56,884 - root - INFO] Downloading manufacturer logos...
+[2024-09-12 18:58:00,399 - root - INFO] Downloaded 383 logos to ../ui/logos/images.
+[2024-09-12 18:58:00,401 - root - INFO] Logo data saved to ../ui/logos/logos.json.
+```
+
+## TODO
 
 * if local files exist that aren't in the logo data file, remove them? or attempt to backfill logo data based on retrieved metadata?
 * consider handling of non [A-Za-z0-9] - e.g. `Škoda`

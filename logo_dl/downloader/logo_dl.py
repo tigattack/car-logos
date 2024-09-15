@@ -214,7 +214,6 @@ class VehicleManufacturerLogos:
                     log.debug(
                         f"{target_location.name} exists and hashes match. Skipping download."
                     )
-                    return None
 
             else:
                 # Ensure target directory exists
@@ -225,11 +224,13 @@ class VehicleManufacturerLogos:
 
                 log.debug(f"Downloaded logo for {name} to {target_location}")
 
-                return ManufacturerLogo(
-                    name=name,
-                    slug=slug,
-                    image=LogoImage(source=logo_url, path=str(target_location.relative_to(self.target_dir))),
-                )
+            # Return always since we want to ensure the logo data is
+            # included in the results even if the logo already exists
+            return ManufacturerLogo(
+                name=name,
+                slug=slug,
+                image=LogoImage(source=logo_url, path=str(target_location.relative_to(self.target_dir))),
+            )
 
             return None
 

@@ -107,6 +107,8 @@ class VehicleManufacturerLogos:
                 log.warning(
                     f"Logos could not be downloaded for the following manufacturers: {sorted(missing_manufacturers)}"
                 )
+            else:
+                log.info(f"Downloaded {required_new_logos_count} new logos to {self.logos_dir}.")
 
         # Scenario 2: No local logos exist and downloaded logos are less than discovered manufacturers
         elif downloaded_logos_count < discovered_manufacturers_count:

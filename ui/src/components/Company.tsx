@@ -12,7 +12,6 @@ export interface ICompany {
   };
 }
 
-const fallbackImageUrl = "https://via.placeholder.com/150";
 const copiedTimeout = 1000;
 
 const Company: React.FC<{ company: ICompany}> = ({ company, scrollPosition }) => {

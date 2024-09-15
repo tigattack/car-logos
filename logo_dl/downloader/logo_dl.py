@@ -228,7 +228,7 @@ class VehicleManufacturerLogos:
                 return ManufacturerLogo(
                     name=name,
                     slug=slug,
-                    image=LogoImage(source=logo_url, path=str(target_location)),
+                    image=LogoImage(source=logo_url, path=str(target_location.relative_to(self.target_dir))),
                 )
 
             return None

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Company, ICompany } from "./Company";
+import Company, { ICompany } from "./Company";
 import Fuse from "fuse.js";
 import companyData from "../logos.json";
 

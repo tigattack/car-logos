@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Loading from "./Loading";
 
 export interface ICompany {
   name: string;
@@ -12,7 +15,7 @@ export interface ICompany {
 const fallbackImageUrl = "https://via.placeholder.com/150";
 const copiedTimeout = 1000;
 
-export const Company: React.FC<{ company: ICompany }> = ({ company }) => {
+const Company: React.FC<{ company: ICompany}> = ({ company, scrollPosition }) => {
   const [hasCopied, setHasCopied] = useState(false);
 
   useEffect(() => {
@@ -31,8 +34,6 @@ export const Company: React.FC<{ company: ICompany }> = ({ company }) => {
   return (
     <div
       className="company-grid-item"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
         navigator.clipboard.writeText(
           window.location.href + company.image.path,
@@ -40,9 +41,22 @@ export const Company: React.FC<{ company: ICompany }> = ({ company }) => {
         setHasCopied(true);
       }}
     >
-      <img src={company.image?.source ?? fallbackImageUrl} alt={company.name} />
+      <LazyLoadImage
+        key={company.slug}
+        src={company.image.path}
+        alt={company.slug}
+        effect={"blur"}
+        width={"185px"}
+        height={"140px"}
+        scrollPosition={scrollPosition}
+        visibleByDefault={false}
+        placeholder={<Loading />}
+      />
       <p>{company.name}</p>
       {hasCopied && <span>Copied!</span>}
     </div>
   );
 };
+
+
+export default trackWindowScroll(Company)

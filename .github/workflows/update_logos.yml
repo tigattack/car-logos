@@ -1,0 +1,59 @@
+name: Update Logos
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "Debug mode"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update_logos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Setup python and restore poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "logo_dl/pyproject.toml"
+          cache: "poetry"
+
+      - name: Update logos
+        id: update_logos
+        run: |
+          python downloader.py --target_dir ../ui/public ${{ github.event.inputs.debug == true && '--debug' || '' }}
+          if [[ -n $(git diff --name-only) ]]; then
+              echo "CHANGED=true" >> "$GITHUB_OUTPUT"
+          else
+              echo "CHANGED=false" >> "$GITHUB_OUTPUT"
+          fi
+
+        working-directory: logo_dl
+
+      - name: Commit & PR changes
+        if: ${{ steps.update_logos.outputs.CHANGED == 'true' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b update-logos
+          git add -A
+          git commit -m "Update logos"
+          git push -u origin update-logos
+
+          gh pr create --title "[chore] Update logos" --body ""
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

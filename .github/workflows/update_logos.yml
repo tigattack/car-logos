@@ -41,7 +41,7 @@ jobs:
       - name: Update logos
         id: update_logos
         run: |
-          python downloader.py --target_dir ../ui/public ${{ github.event.inputs.debug == true && '--debug' || '' }}
+          poetry run python downloader.py --target_dir ../ui/public ${{ github.event.inputs.debug == true && '--debug' || '' }}
           if [[ -n $(git diff --name-only) ]]; then
               echo "CHANGED=true" >> "$GITHUB_OUTPUT"
           else

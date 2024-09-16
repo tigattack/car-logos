@@ -15,9 +15,15 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  UI_DIR: ui
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.UI_DIR }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,7 +61,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            .next/cache
+            ${{ env.UI_DIR }}/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.

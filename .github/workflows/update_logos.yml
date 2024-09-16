@@ -54,10 +54,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout -b update-logos
+          git checkout -b auto-update-logos
           git add -A
           git commit -m "Update logos"
-          git push -u origin update-logos
+          git push -u origin auto-update-logos -f
 
           gh pr create --title "[chore] Update logos" --body ""
         env:

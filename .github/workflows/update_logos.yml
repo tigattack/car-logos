@@ -32,6 +32,9 @@ jobs:
           python-version-file: "logo_dl/pyproject.toml"
           cache: "poetry"
 
+      - name: Install dependencies
+        run: poetry install
+
       - name: Update logos
         id: update_logos
         run: |

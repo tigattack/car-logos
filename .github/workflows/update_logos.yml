@@ -20,6 +20,9 @@ permissions:
 jobs:
   update_logos:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: logo_dl
     steps:
       - uses: actions/checkout@v4
 
@@ -44,8 +47,6 @@ jobs:
           else
               echo "CHANGED=false" >> "$GITHUB_OUTPUT"
           fi
-
-        working-directory: logo_dl
 
       - name: Commit & PR changes
         if: ${{ steps.update_logos.outputs.CHANGED == 'true' }}

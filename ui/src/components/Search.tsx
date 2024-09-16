@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 
 import SearchItem from './SearchItem';
 
+import nextConfig from '../../next.config.mjs';
+
 interface Entity {
   label: string
   image: {
@@ -17,8 +19,10 @@ const Search: React.FC = () => {
   const [results, setResults] = useState<Entity[]>([]);
   const [error, setError] = useState(false);
 
+  const base = nextConfig.basePath ? nextConfig.basePath + '/' : '/';
+
   useEffect(() => {
-    fetch('/logos.json')
+    fetch(base + 'logos.json')
       .then((response) => response.json())
       .then((data) => {
         setResults(data);
@@ -57,7 +61,7 @@ const Search: React.FC = () => {
             /> */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '.5rem' }}>
         {results.map((logo) => (
-          <SearchItem key={logo.image.slug} logoUrl={'/' + logo.image.path} label={logo.label} />
+          <SearchItem key={logo.image.slug} logoUrl={base + logo.image.path} label={logo.label} />
         ))}
       </div>
     </div>

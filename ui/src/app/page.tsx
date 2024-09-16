@@ -1,5 +1,5 @@
 import Search from '@/components/Search';
-import React, { use } from 'react';
+import React from 'react';
 
 const HomePage: React.FC = () => {
     return (

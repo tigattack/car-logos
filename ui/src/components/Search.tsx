@@ -5,15 +5,17 @@ import React, { useState, useEffect } from 'react';
 import SearchItem from './SearchItem';
 
 interface Entity {
-  id: number;
-  name: string;
-  url: string;
+  label: string
+  image: {
+    path: string,
+    slug: string
+  }
 }
 
 const Search: React.FC = () => {
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const [results, setResults] = useState<Entity[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch('/logos.json')
@@ -28,17 +30,17 @@ const Search: React.FC = () => {
         // const filteredLogos = results.filter((entity: Entity) => {
         //     console.log(entity);
         // });
-      }).catch((error) => {
-        console.error('Error:', error);
+      }).catch(() => {
+        setError(true);
       });
 
     return () => {
       setResults(results ?? []);
     }
-  }, [query]);
+  }, []);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error</div>;
   }
 
   if (!results) {
@@ -55,7 +57,7 @@ const Search: React.FC = () => {
             /> */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '.5rem' }}>
         {results.map((logo) => (
-          <SearchItem key={logo.id} logoUrl={'/' + logo.image.path} label={logo.name} />
+          <SearchItem key={logo.image.slug} logoUrl={'/' + logo.image.path} label={logo.label} />
         ))}
       </div>
     </div>

@@ -13,17 +13,16 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
 
-
       // that is animation class
       animation: {
-        fade: 'fadeOut 5s ease-in-out',
+        fade: "fadeOut 5s ease-in-out",
       },
 
       // that is actual animation
-      keyframes: theme => ({
+      keyframes: (theme) => ({
         fadeOut: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '100' },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "100" },
         },
       }),
     },

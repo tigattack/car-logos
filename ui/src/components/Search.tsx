@@ -104,7 +104,7 @@ const Search: React.FC = () => {
             <SearchItem
               key={logo.image.slug}
               label={logo.name}
-              logoUrl={"/" + logo.image.path}
+              logoUrl={base + logo.image.path}
             />
           </div>
         ))}

@@ -41,7 +41,7 @@ jobs:
           generator_config_file: ${{ env.UI_DIR }}/next.config.mjs
 
       - name: Restore cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ${{ env.UI_DIR }}/.next/cache

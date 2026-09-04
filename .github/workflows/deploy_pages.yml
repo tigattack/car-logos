@@ -35,7 +35,7 @@ jobs:
           bun-version: latest
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           static_site_generator: next
           generator_config_file: ${{ env.UI_DIR }}/next.config.mjs
